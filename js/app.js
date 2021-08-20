@@ -26,12 +26,21 @@ document.getElementById("key-pad").addEventListener("click", function (event) {
     if (number == "C") {
       calcInput.value = "";
     }
+    else if(number == "<")
+    {
+    
+        const calcInput = document.getElementById("typed-numbers").value;
+        const remove=calcInput.slice(0,calcInput.length-1);
+        document.getElementById("typed-numbers").value=remove;
+      
+    }
   } else {
     const previousCalc = calcInput.value;
     const newCalc = previousCalc + number;
     calcInput.value = newCalc;
   }
 });
+
 
 function verifyPin() {
   const pin = document.getElementById("display-pin").value;
@@ -44,6 +53,24 @@ function verifyPin() {
   } else {
     successMessage.style.display = "none";
     failError.style.display = "block";
+    tryLeft('tryLeft');
   }
+}
+
+//try
+
+function tryLeft(id){
+  var tryAgain=document.getElementById(id).innerHTML;
+  document.getElementById(id).innerHTML-=1;
+  if(tryAgain == '1')
+  disableBtn('submit');
+}
+
+//try expired
+function disabledBtn(id){
+  let button=document.getElementById(id);
+  button.style.cursor='not-allowed';
+  button.setAttribute('disabled','true');
+  button.title="Reload page";
 }
 
